@@ -1,9 +1,132 @@
 <!doctype html public '-//w3c//dtd html 4.0 transitional//en'>
 <html><head>
 <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'>
-<link href='../minima.css' rel='StyleSheet' type='text/css'>
+<link href='minima.css' rel='StyleSheet' type='text/css'>
 <title>Computed Tomography Emphysema Database</title>
 </head>
 <body>
 <h1>Computed Tomography Emphysema Database</h1>
+
+<p>This website describes and hosts a computed tomography (CT) emphysema database that has previously been used to develop texture-based CT biomarkers of chronic obstructive pulmonary disease (COPD).</p>
+
+
+<p>Emphysema, characterized by loss of lung tissue, is one of the main components of COPD, and a proper classification of emphysematous - and healthy - lung tissue is useful for a more detailed analysis of the disease. This may, e.g., lead to improved understanding and improved computer-aided diagnosis (CAD). One way to objectively characterize the emphysema morphology is to describe the CT image intensity patterns using texture analysis techniques. Texture-based biomarkers often rely on supervised learning; hence a set of labeled examples are needed such as the data contained in this database. This area of research has received quite some attention in recent years, yet the amount of available data is limited making it impossible to judge different methods on common grounds. This is why this database is made publicly available.</p> 
+
+<h2>Conditions</h2>
+
+<p>The database can be used free of charge for research and educational purposes. Redistribution and commercial use is not permitted. If you publish using data from this website (journal publications, conference papers, abstracts, technical reports, etc.), please cite the following paper:<p>
+
+<p>L. S&oslash;rensen, S. B. Shaker, and M. de Bruijne, <b>Quantitative Analysis of Pulmonary Emphysema using Local Binary Patterns</b>, <i>IEEE Transactions on Medical Imaging 29(2): 559-569</i>, 2010. [<a href="http://image.diku.dk/lauges/publications/Sorensen2010.pdf">PDF</a> &#124; <a href="soerensen2010.bib">BibTex</a>]</p>
+
+<p>Further, we would also appreciate if a reference to the publication using the data be forwarded to the following email address: lauges (at) diku (dot) dk. This information will be added to the <a href="#studies_using_this_data">list</a> of studies using data from this database at the bottom of this website.</p>
+
+<h2>Description of the data</h2>
+
+<p>The database comprises 115 high-resolution CT (HRCT) slices as well as 168 square patches manually annotated in a subset of the slices.</p>
+
+<p>CT scanning was performed using General Electric (GE) equipment (LightSpeed QX/i; GE Medical Systems, Milwaukee, WI, USA) with four detector rows and using the following parameters: in-plane resolution 0.78 x 0.78 mm, slice thickness 1.25 mm, tube voltage 140 kV, and tube current 200 mAs. The slices were reconstructed using a high-spatial-resolution (bone) algorithm. The data comes from a study group comprising 39 subjects (9 never-smokers, 10 smokers, and 20 smokers with COPD) that were all CT scanned. See [1] and [2] for more details.</p>
+
+<p>Apart from the data, we also provide information about which subject each patch (in a seperate file) and each HRCT slice (in the file naming) comes from to enable appropriate cross-validation at subject level.</p>
+
+<h3>Slices</h3>
+
+<p>The 512 x 512 pixel slices were acquired in the upper, middle, and lower part of the lung of each subject. A slice was missing in two cases, hence a total of 115 HRCT slices are available.<p> 
+
+<p>An experienced chest radiologist and a CT experienced pulmonologist each assessed the leading pattern (either normal tissue (NT), centrilobular emphysema (CLE), paraseptal emphysema (PSE), or panlobular emphysema (PLE)) as well as the associated severity (either no emphysema or minimal, mild, moderate, severe, or very severe emphysema) in each of the 115 slices. A consensus was made in cases of disagreement. The leading pattern was later used for obtaining patch labels. The leading pattern, or label, of each slice as well as the associated severity is also available.</p>
+
+<h3>Patches</h3>
+
+<p>The 168 61 x 61 pixel patches are from three different classes, NT (59 observations), CLE (50 observations), and PSE (59 observations). The NT patches were annotated in never smokers, and the CLE and PSE ROIs were annotated in healthy smokers and smokers with COPD in areas of the leading pattern.</p>
+
+<p>The largest patch size considered in [1] was 51 x 51 pixels. However, here we provide larger patches in order to enable handling of the patch border in a fashion similar to [1].</p>
+
+<table class="image">
+<caption align="bottom">Example 51 x 51 pixel patches from the database. Left: NT. Middle: CLE. Right: PSE.</caption>
+<tr>
+<td><img src="images/ct-patch-with-normal-tissue.png" alt="CT patch with normal tissue" title="CT patch with normal tissue" style="height: 150px"></td>
+<td><img src="images/ct-patch-with-centrilobular-emphysema.png" alt="CT patch with centrilobular emphysema" title="CT patch with centrilobular emphysema" style="height: 150px"></td>
+<td><img src="images/ct-patch-with-paraseptal-emphysema.png" alt="CT patch with paraseptal emphysema" title="CT patch with paraseptal emphysema" style="height: 150px"></td>
+</tr>
+</table>
+
+<h2>Resources</h2>
+<p>General</p>
+<ul>
+<li><a href="data/subjects.csv">subjects.csv</a> (a csv-file containing the 39 unique subject ID strings)</li> 
+</ul>
+<p>Slices</p>
+<ul>
+<li><a href="data/slices.zip">slices.zip</a> (a zip-file containing the 115 CT slices of size 512 x 512 pixels in 16 bit TIFF-format<sup>*</sup>. Note that the slices are named as follows: [subject ID]_[location].tif. Location can be top, middle, or bottom)</li> 
+<li><a href="data/slice_labels.csv">slice_labels.csv</a> (the leading pattern in each of the 115 slices. The leading patterns are encoded as: 1 NT, 2 CLE, 3 PSE, 4 PLE. The first column in the csv-file is the name of the slice and the second column is the leading pattern)</li> 
+<li><a href="data/slice_severity.csv">slice_severity.csv</a> (the severity of emphysema in each of the 115 slices. The emphysema severity is encoded as: 0 no emphysema, 1 minimal, 2 mild, 3 moderate, 4 severe, 5 very severe. The first column in the csv-file is the name of the slice and the second column is the severity)</li> 
+</ul>
+<p>Patches</p>
+<ul>
+<li><a href="data/patches.zip">patches.zip</a> (a zip-file containing the 168 patches of size 61 x 61 pixels in 16 bit TIFF-format<sup>*</sup>)</li> 
+<li><a href="data/patch_labels.csv">patch_labels.csv</a> (the 168 patch labels encoded as: 1 NT, 2 CLE, 3 PSE. The labels follow the ordering of the patches in patches.zip. For example, patch1.tiff has label 1, patch60.tiff has label 2, and patch110.tiff has label 3)</li> 
+<li><a href="data/patch_subjects.csv">patch_subjects.csv</a> (information about which subject each patch is from. The subjects are identified by the subject ID string. Note that the number of patches from each subject varies)</li>
+</ul>
+
+* Please note that some programs cannot handle 16 bit TIFF images properly, causing the slices and patches to be converted to/displayed as binary (they are grayscale). Examples of programs the can handle the data properly include: Matlab and ImageJ. The first 15 columns in the first row of patch1.tiff should contain the following intensities in order to be correct: 374, 126, 182, 208, 223, 684, 927, 1201, 1346, 1103, 581, -37, -532, -614, -686. 
+
+<h2>References</h2>
+
+<ul style="list-style: none; padding-left: 20;">
+<li>[1] L. S&oslash;rensen, S. B. Shaker, and M. de Bruijne, Quantitative Analysis of Pulmonary Emphysema using Local Binary Patterns, <i>IEEE Transactions on Medical Imaging 29(2): 559-569</i>, 2010.</li>
+<li>[2] S. B. Shaker, K. A. von Wachenfeldt, S. Larsson, I. Mile, S. Persdotter, M. Dahlb&auml;ck, P. Broberg, B. Stoel, K. S. Bach, M. Hestad, T. E. Fehniger, and A. Dirksen, Identification of patients with chronic obstructive pulmonary disease (COPD) by measurement of plasma biomarkers, <i>The Clinical Respiratory Journal 2(1): 17–25</i>, 2008.</li>
+</ul>
+
+<h2 id="studies_using_this_data">Studies using data from this database</h2>
+
+This is a list of studies using data from this database. In some cases, only a subset of the data is used.
+
+<ul>
+<li>A. Sriram, S. Kalra, H. R. Tizhoosh, <b>Projectron - A Shallow and Interpretable Network for Classifying Medical Images</b>, <i>CoRR abs/1904.00740</i>, 2019.</li>
+<li>A. Aggarwala, S. Sharmab, K. Singha, H. Singhc, S. Kumar, <b>A new approach for effective retrieval and indexing of medical images</b>, <i>Biomedical Signal Processing and Control 50: 10-34</i>, 2019.</li>
+<li>M. A. Ibrahim, O. A. Ojo, P. A. Oluwafisoye, <b>On Feature Selection Methods for Accurate Classification and Analysis of Emphysema CT Images</b>, <i>International Journal of Medical Imaging 5(6): 70-78</i>, 2018.</li>
+<li>M. A. Ibrahim, O. A. Ojo, P. A. Oluwafisoye, <b>Identification of emphysema patterns in high resolution computed tomography images</b>, <i>Journal of Biomedical Engineering and Informatics 4(1): 16-24</i>, 2018.</li>
+<li>A. Kallel, A. B. Hamida, <b>A new adaptive gamma correction based algorithm using DWT-SVD for non-contrast CT image enhancement</b>, <i>IEEE Transactions on NanoBioscience 16(8): 666-675</i></li>
+<li>Y. Kumar, A. Aggarwal, S. Tiwari, K. Singh, <b>An efficient and robust approach for biomedical image retrieval using Zernike moments</b>, <i>Biomedical Signal Processing and Control 39: 459-473</i>, 2018.</li>
+<li>V. Srivastava and R. K. Purwar, <b>A Five-Level Wavelet Decomposition and Dimensional Reduction Approach for Feature Extraction and Classification of MR and CT Scan Images</b>, <i>Applied Computational Intelligence and Soft Computing 2017</i>, 2017.</li>
+<li>M. Nishio , K. Nakane, T. Kubo, M. Yakami, Y. Emoto, M. Nishio, K. Togashi, <b>Automated prediction of emphysema visual score using homology-based quantification of low-attenuation lung region</b>, <i>PLoS One 12(5): e0178217</i>, 2017.</li>
+<li>L. Peng, L. Lin, H. Hu, X. Ling, D. Wang, X. Han, Y.-W. Chen, <b>Joint Weber-Based Rotation Invariant Uniform Local Ternary Patterns for Classification of Pulmonary Emphysema in CT Images</b>, <i>IEEE International Conference on Image Processing (ICIP)</i>, 2017.</li> 
+<li>G. Agarwal, S. P. Mishra, S. Maurya, S. Chaudhary, S. Murala, <b>Local peak valley co-occurrence patterns: A new feature descriptor for image retrieval</b>, <i>International Conference on Signal and Information Processing (IConSIP)</i>, 2017.</li>
+<li>S. R. Dubey, <b>Robust Image Feature Description, Matching and Applications</b>, <i>PhD Thesis, IIIT Allahabad</i>, 2016.</li>
+<li>N. Brancati, D. Gragnaniello, L. Verdoliva, <b>Scale Invariant Descriptor for Content Based Image Retrieval in Biomedical Applications</b>, <i>International Conference on Signal-Image Technology & Internet-Based Systems (SITIS)</i>, 2016.</li>
+<li>J. Yang, X. Feng, E. D. Angelini, A. F. Laine, <b>Texton and Sparse Representation Based Texture Classification of Lung Parenchyma in CT Images</b>, <i>International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC)</i>, 2016.</li>
+<li>Q. Feng, Y. Zhou, <b>Kernel Combined Sparse Representation for Disease Recognition</b>, <i>IEEE Transactions on Multimedia 18(10): 1956-1968</i>, 2016.</li>
+<li>G. L. B. Ramalhoa, D. S. Ferreiraa, P. P. R. Filhoa, F. N. S. de Medeiros, <b>Rotation-invariant Feature Extraction using a Structural Co-occurrence Matrix</b>, <i>Measurement 94: 406-415</i>, 2016.</li>
+<li>M. Ibrahim and R. Mukundan, <b>Analysis of scale variations of local features for accurate classification of Emphysema images</b>, <i>IEEE International Conference on Biomedical Engineering and Informatics (BMEI)</i>, 2015.</li>
+<li>S. R. Dubey, S. K. Singh, R. K. Singh, <b>Local Diagonal Extrema Pattern: A New and Efficient Feature Descriptor for CT Image Retrieval</b>, <i>IEEE Signal Processing Letters 22(9): 1215-1219</i>, 2015.</li>
+<li>E. M. Karabulut and T. Ibrikci, <b>Emphysema discrimination from raw HRCT images by convolutional neural networks</b>, <i>IEEE International Conference on Electrical and Electronics Engineering (ELECO)</i>, 2015</li>
+<li>R. Nava, J. Olveres, J. Kybic, B. Escalante, G. Cristóbal, <b>Feature Ensemble for Quantitative Analysis of Emphysema in CT imaging</b>, <i>IEEE International Conference on E-Health and Bioengineering (EHB)</i>, 2015</li>
+<li>R. P. da Rosa, M. A. Porto, A. Kozakevicius, <b>Classificador de imagens de pulmão utilizando wavelets de Haar e distância de Mahalanobis</b>, <i>Revista de Informática Teórica e Aplicada 22(2)</i>, 2015</li>
+<li>R. P. da Rosa and M. d'Ornellas, <b>An	Optimized Superpixel Clustering	Approach for High Resolution Chest CT	Image	Segmentation</b>, <i>Studies in health technology and informatics</i>, 2015.</li>
+<li>M. A. Porto and M. d'Ornellas, <b>Automated Image Retrieval of Chest CT Images Based on Local Grey Scale Invariant Features</b>, <i>Studies in health technology and informatics</i>, 2015.</li>
+<li>X. Pei, <b>Emphysema Classification Using Convolutional Neural Networks</b>, <i>Intelligent Robotics and Applications (ICIRA)</i>, 2015.</li>
+<li>M. Ibrahim and R. Mukundan, <b>Cascaded techniques for improving emphysema classification in computed tomography images</b>, <i>Artificial Intelligence Research</i>, 2015.</li>
+<li>S. R. Dubey, S. K. Singh, and R. K. Singh, <b>Local Bit-plane Decoded Pattern: A Novel Feature Descriptor for Biomedical Image Retrieval</b>, <i>IEEE Journal of Biomedical and Health Informatics</i>, 2015.</li>
+<li>M. Ibrahim and R. Mukundan, <b>Multi-fractal Techniques for Emphysema Classification in Lung Tissue Images</b>, <i>International Conference on Environment, Chemistry and Biology (ICECB)</i>, 2014.</li>
+<li>T. Azim and M. Niranjan, <b>Texture Classification with Fisher Kernel Extracted from the Continuous Models of RBM</b>, <i>International Conference on Computer Vision Theory and Applications (VISAPP)</i>, 2014.</li>
+<li>F. Bianconi and A. Fernández, <b>An appendix to "Texture databases – A comprehensive survey"</b>, <i>Pattern Recognition Letters 45(1): 33-38</i>, 2014.</li>
+<li>R. Nava, B. Escalante-Ramírez, G. Cristóbal, and R. S. J. Estépar, <b>Extended Gabor approach applied to classification of emphysematous patterns in computed tomography</b>, <i>Medical &amp; Biological Engineering &amp; Computing</i>, 2014</li>
+<li>C. Dharmagunawardhana, S. Mahmood, M. Bennett, and M. Niranjan, <b>Quantitative analysis of pulmonary emphysema using isotropic Gaussian Markov random fields</b>, <i>International Conference on Computer Vision Theory and Applications (VISAPP)</i>, 2014</li> 
+<li>R. Nava, J. V. Marcos, B. Escalante-Ramirez, G. Cristóbal, L. U. Perrinet, and R. S. J. Estépar, <b>Advances in Texture Analysis for Emphysema Classification</b>, <i>Iberoamerican Congress on Pattern Recognition (CIARP)</i>, 2013.</li>
+<li>C. Chen, L. S&oslash;rensen, F. Lauze, C. Igel, M. Loog, A. Feragen, M. de Bruijne, and M. Nielsen, <b>Towards Exaggerated Emphysema Stereotypes</b>, <i>SPIE Medical Imaging</i>, 2012.</li>
+<li>L. S&oslash;rensen, M. J. Gangeh, S. B. Shaker, and M. de Bruijne, <b>Texture classification in pulmonary CT</b>, <i>Lung Imaging and Computer Aided Diagnosis</i>, CRC Press, Taylor & Francis Group, 2011.</li>
+<li>L. S&oslash;rensen, S. B. Shaker, and M. de Bruijne, <b>Quantitative Analysis of Pulmonary Emphysema using Local Binary Patterns</b>, <i>IEEE Transactions on Medical Imaging 29(2): 559-569</i>, 2010.</li>
+<li>M. J. Gangeh, L. S&oslash;rensen, S. B. Shaker, M. S. Kamel and M. de Bruijne, <b>Multiple classifier systems in texton-based approach for the classification of CT images of lung</b>, <i>Medical Computer Vision 2010: Recognition Techniques and Applications in Medical Imaging</i>, 2010.</li>
+<li>M. J. Gangeh, L. S&oslash;rensen, S. B. Shaker, M. S. Kamel, M. de Bruijne, and M. Loog, <b>A texton-based approach for the classification of lung parenchyma in CT images</b>, <i>Medical Image Computing and Computer Assisted Intervention (MICCAI)</i>, 2010.</li>
+<li>L. S&oslash;rensen and M. de Bruijne, <b>Dissimilarity representations in lung parenchyma classification</b>, <i>SPIE Medical Imaging</i>, 2009.</li>
+<li>L. S&oslash;rensen, S. B. Shaker, and M. de Bruijne, <b>Texture classification in lung CT using local binary patterns</b>, <i>Medical Image Computing and Computer Assisted Intervention (MICCAI)</i>, 2008.</li>
+<li>L. S&oslash;rensen, S. B. Shaker, and M. de Bruijne, <b>Texture based emphysema quantification in lung CT</b>, <i>The First International Workshop on Pulmonary Image Analysis</i>, 2008.</li>
+</ul>
+
+<h2>Contact</h2>
+
+<p>Please forward any questions to the following email address: lauges (at) diku (dot) dk</p>
 </body>
+
+<hr />
+
+<p>This website is copyright &copy; 2013 - 2019 Lauge S&oslash;rensen, Saher B. Shaker, and Marleen de Bruijne.</p>
